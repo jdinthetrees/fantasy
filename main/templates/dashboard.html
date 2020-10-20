@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>dashboard</h1>
+
+    <div class="banner">
+        <h1>Hello, {{current_user.f_name}}</h1>
+
+    <div class="rightbox">
+    <h2><form action="/logout" method="POST" id="logout">
+        {% csrf_token %}
+    <input type="submit" value="logout" />
+    </form>
+    
+    
+
+
+
+</body>
+</html>

@@ -55,5 +55,7 @@
         {% csrf_token %}
     <input type="submit" value="logout" />
     </form>
+
+    <button><a href="/delete_roster/{{roster.id}}">Delete</a></button>
 </body>
 </html>

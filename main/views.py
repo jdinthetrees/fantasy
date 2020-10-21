@@ -4,6 +4,9 @@ from .models import User, Player, Roster
 import bcrypt
 import random
 
+computer = User(name='PC2')
+computer_roster = Roster(id=99, user=computer)
+
 def index(request):
 
     if 'user_id' in request.session:
@@ -28,6 +31,10 @@ def login_user(request):
     our_user = email_users[0]
     if bcrypt.checkpw(request.POST['password'].encode(), our_user.password.encode()):
         request.session['user_id'] = our_user.id
+        user = User.objects.get(id=request.session['user_id'])
+        
+        Roster.objects.create(user=user)
+        
         return redirect('/dashboard')
     messages.error(request, "password does not match try again!")
     return redirect('/')
@@ -65,6 +72,9 @@ def welcome(request):
     context = {
         'current_user': User.objects.get(id=request.session['user_id'])
     }
+    
+    # print(computer.name)
+    # print(computer_roster.players.all())
 
     return render(request, "dashboard.html", context)
 
@@ -92,9 +102,15 @@ def draft_view(request):
     user = User.objects.get(id=request.session['user_id'])
     request.session['lineup'] = ''
     
+    avail_players = []
+    for player in Player.objects.all():
+        if player.picked == False:
+            avail_players.append(player)
+    
     context = {
         'current_user': User.objects.get(id=request.session['user_id']),
-        'players': Player.objects.all(),
+        # 'players': Player.objects.all(),
+        'players': avail_players,
         'roster': user.roster
     }
     
@@ -130,3 +146,15 @@ def gameplay(request):
     print(random_points)
     
     return redirect('/lineup')
+
+def delete_roster(request, roster_id):
+    print('roster_id: ', roster_id)
+    
+    for player in Player.objects.all():
+        player.picked = False
+        player.save()
+    
+    this_roster = Roster.objects.get(id=roster_id)
+    this_roster.delete()
+    
+    return redirect('/dashboard')

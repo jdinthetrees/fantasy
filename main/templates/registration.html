@@ -11,10 +11,8 @@
     <form action="/process_user" method="POST">
         {% csrf_token %}
 
-        <label for="f_name">first name</label>
-        <input type="text" name="f_name" id="f_name"><br>
-        <label for="l_name">last name</label>
-        <input type="text" name="l_name" id="l_name"><br>
+        <label for="name">first name</label>
+        <input type="text" name="name" id="name"><br>
         <label for="email">email</label>
         <input type="email" name="email" id="email"><br>
         <label for="password">password</label>

@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Draft</title>
 </head>
 <body>
-    <h1>Dashboard</h1>
+    <h1>Draft</h1>
 
     <div class="banner">
         <h1>Hello, {{current_user.name}}</h1>
+
+    <ul>
+    {% for player in players %}
+        <li>{{player.name}} <a href="/roster_add/{{player.id}}" class="button">+</a></li>
+    {% endfor %}
+    </ul>
+
+    <ul>
+        {% for player in roster.players.all %}
+            <li>{{player.name}} </li>
+        {% endfor %}
+    </ul>
 
     <div class="rightbox">
     <h2><form action="/logout" method="POST" id="logout">
         {% csrf_token %}
     <input type="submit" value="logout" />
     </form>
-    
-    
-
-
-
 </body>
 </html>

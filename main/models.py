@@ -8,7 +8,7 @@ class UserManager(models.Manager):
         errors= {}
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if len(postData['name']) < 2:
-            errors['name'] = "First name must be at least two characters"
+            errors['name'] = "Name must be at least two characters"
         if not EMAIL_REGEX.match(postData['email']):
             errors['email'] = "Email does not match"
         if len(postData['email']) < 6:

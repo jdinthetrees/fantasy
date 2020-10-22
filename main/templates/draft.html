@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Draft</title>
+    {% load static %}
 </head>
 <body>
+    <div class="container">
     <h1>Draft</h1>
 
     <div class="banner">
-        <h1>Hello, {{current_user.name}}</h1>
+        <p>Hello, {{current_user.name}}</p>
+    </div>
 
+    <div class="draftable_players">
+        <p>Draftable Player's</p>
     <ul>
     {% for player in players %}
         <li>{{player.name}} <a href="/roster_add/{{player.id}}" class="button">+</a></li>
     {% endfor %}
     </ul>
 
+    </div>
+
+    <div class="current_roster">
+        <p>Current Roster</p>
     <ul>
         {% for player in roster.players.all %}
             <li>{{player.name}} </li>
         {% endfor %}
     </ul>
 
+    <p>Computer Roster</p>
+    <ul>
+        {% for player in comp_roster %}
+            <li>{{player.name}} </li>
+        {% endfor %}
+    </ul>
+
+    </div>
     {% if roster_length == 9 %}
         <button><a href="/lineup">Continue</a></button>
     {% endif %}
-
+    <div class="lebron_dunk"><img src="{% static '/css/images/lebron_dunk.gif' %}" alt="Image is Loading"></div>
     <div class="rightbox">
     <h2><form action="/logout" method="POST" id="logout">
         {% csrf_token %}
-    <input type="submit" value="logout" />
+    <input type="submit" value="logout"/>
     </form>
+</div>
 </body>
 </html>

@@ -4,8 +4,8 @@ from .models import User, Player, Roster
 import bcrypt
 import random
 
-computer = User(name='PC2')
-computer_roster = Roster(id=99, user=computer)
+# computer = User(name='PC2')
+# computer_roster = Roster(id=99, user=computer)
 
 
     
@@ -93,9 +93,13 @@ def comp_draft_play(request):
     player = avail_players[comp_pick_index]
     print(player.name)
     
-    # computer_roster.players.add(player)
-    # player.picked = True  
-    # player.save()
+    computer = User.objects.get(id=99)
+    
+    computer.roster.players.add(player)
+    player.picked = True  
+    player.save()
+    
+    print('all players: ', computer.roster.players.all())
     
     
     print('comp_pick_index: ', comp_pick_index)
@@ -111,7 +115,7 @@ def roster_add(request, player_id):
         this_roster.players.add(player)
         player.picked = True  
         player.save()
-        # return redirect('/comp_draft_play')
+        return redirect('/comp_draft_play')
     
     
     
@@ -121,35 +125,66 @@ def roster_add(request, player_id):
 
 # Create your views here.
 
+
 def draft_view(request):
     user = User.objects.get(id=request.session['user_id'])
-    request.session['lineup'] = ''
-    
+    request.session['winning_scores'] = ''
+    request.session['comp_winning_scores'] = ''
+    request.session['game_count'] = 0
     avail_players = []
     for player in Player.objects.all():
         if player.picked == False:
             avail_players.append(player)
-    
+            
     roster_length = len(user.roster.players.all())
+    computer = User.objects.get(id=99)
+    comp_roster = computer.roster.players.all()
     
     context = {
         'current_user': User.objects.get(id=request.session['user_id']),
         # 'players': Player.objects.all(),
         'players': avail_players,
         'roster': user.roster,
-        'roster_length': roster_length
-        
+        'roster_length': roster_length,
+        'comp_roster': comp_roster
     }
-    
     
     return render(request, 'draft.html', context)
 
 def lineup_view(request):
+    winner = ''
     user = User.objects.get(id=request.session['user_id'])
+    winning_scores_array = request.session['winning_scores'].split('|')
+    winning_scores_array.pop()
+    
+    comp_winning_scores_array = request.session['comp_winning_scores'].split('|')
+    comp_winning_scores_array.pop()
+    
+    print('winning_scores_array: ', winning_scores_array)
+    print('comp_winning_scores_array: ', comp_winning_scores_array)
+    
+    if len(comp_winning_scores_array)>4:
+        comp_wins_total = 0
+        user_wins_total = 0
+        for i in range(0, len(winning_scores_array)):  
+            if int(winning_scores_array[i]) > int(comp_winning_scores_array[i]):
+                user_wins_total += 1
+            else:
+                comp_wins_total += 1
+        if user_wins_total > comp_wins_total:
+            winner = 'user'
+        else:
+            winner = 'comp'
+        
+    print('winner', winner)
     
     context = {
         'current_user': user,
-        'roster': user.roster
+        'roster': user.roster,
+        'winning_scores_array': winning_scores_array,
+        'comp_winning_scores_array': comp_winning_scores_array,
+        'winner': winner,
+        # 'all_winning_scores_array': all_winning_scores_array
     }
     
     return render(request, 'lineup.html', context)
@@ -157,36 +192,96 @@ def lineup_view(request):
 
 
 def gameplay(request):
+    request.session['game_count'] += 1
+    print('game_count', request.session['game_count'])
     
     print(request.POST)
-    id_array = request.POST.getlist('player_id')
-    # print(id_array)
+    computer = User.objects.get(id=99)
+    comp_roster = computer.roster.players.all()
+    # print('test: ', comp_roster[6:9])
+    comp_pick_index = random.randint(0, 6)
+    comp_picks = comp_roster[comp_pick_index:(comp_pick_index+3)]
+    comp_picks_ids = []
+    for pick in comp_picks:
+        comp_picks_ids.append(pick.id)
+        
     for i in range(0,3,1):
         # print(i, id_array[i])
+        
+        if i == 0:
+            comp_player1 = Player.objects.get(id=int(comp_picks_ids[0]))
+            comp_starter1 = comp_player1.name
+            comp_points1 = (comp_player1.pts+comp_player1.stl+(comp_player1.ast//2)+(comp_player1.blk//2)+(comp_player1.reb//2))
+            comp_random_points1= random.randint(comp_points1 - 5, comp_points1 + 5)
+            request.session['comp_points1'] = comp_random_points1
+            request.session['comp_starter1'] = comp_starter1
+            print('comp: ', comp_random_points1)
+        elif i == 1:
+            comp_player2 = Player.objects.get(id=int(comp_picks_ids[1]))
+            comp_starter2 = comp_player2.name
+            comp_points2 = (comp_player2.pts+comp_player2.stl+(comp_player2.ast//2)+(comp_player2.blk//2)+(comp_player2.reb//2))
+            comp_random_points2 = random.randint(comp_points2 - 5, comp_points2 + 5)
+            request.session['comp_points2'] = comp_random_points2
+            request.session['comp_starter2'] = comp_starter2
+            print('comp: ', comp_random_points2)
+        else:
+            comp_player3 = Player.objects.get(id=int(comp_picks_ids[2]))
+            comp_starter3 = comp_player3.name
+            comp_points3 = (comp_player3.pts+comp_player3.stl+(comp_player3.ast//2)+(comp_player3.blk//2)+(comp_player3.reb//2))
+            comp_random_points3= random.randint(comp_points3 - 5, comp_points3 + 5)
+            request.session['comp_points3'] = comp_random_points3
+            request.session['comp_starter3'] = comp_starter3
+            print('comp: ', comp_random_points3)
+    
+    comp_total_points = comp_random_points1+comp_random_points2+comp_random_points3
+    print('comp: ', comp_total_points)
+    request.session['comp_total_points'] = comp_total_points
+    
+    request.session['comp_winning_scores'] += str(comp_total_points)+'|'
+    print(request.session['comp_winning_scores'])
+    
+
+    id_array = request.POST.getlist('player_id')
+    # print(id_array)
+
+    for i in range(0,3,1):
+        # print(i, id_array[i])
+        
         if i == 0:
             player1 = Player.objects.get(id=int(id_array[0]))
+            starter1 = player1.name
             points1 = (player1.pts+player1.stl+(player1.ast//2)+(player1.blk//2)+(player1.reb//2))
             random_points1= random.randint(points1 - 5, points1 + 5)
             request.session['points1'] = random_points1
+            request.session['starter1'] = starter1
             print(random_points1)
         elif i == 1:
             player2 = Player.objects.get(id=int(id_array[1]))
+            starter2 = player2.name
             points2 = (player2.pts+player2.stl+(player2.ast//2)+(player2.blk//2)+(player2.reb//2))
             random_points2 = random.randint(points2 - 5, points2 + 5)
             request.session['points2'] = random_points2
+            request.session['starter2'] = starter2
             print(random_points2)
         else:
             player3 = Player.objects.get(id=int(id_array[2]))
+            starter3 = player3.name
             points3 = (player3.pts+player3.stl+(player3.ast//2)+(player3.blk//2)+(player3.reb//2))
             random_points3= random.randint(points3 - 5, points3 + 5)
             request.session['points3'] = random_points3
+            request.session['starter3'] = starter3
             print(random_points3)
-
         
     total_points = random_points1+random_points2+random_points3
     print(total_points)
+    request.session['total_points'] = total_points
+    
+    request.session['winning_scores'] += str(total_points)+'|'
+    print(request.session['winning_scores'])
 
-    return redirect('/')
+    return redirect('/lineup')
+
+
 
 def delete_roster(request, roster_id):
     print('roster_id: ', roster_id)
@@ -199,5 +294,10 @@ def delete_roster(request, roster_id):
     this_roster.delete()
     user = User.objects.get(id=request.session['user_id'])
     Roster.objects.create(user=user)
+    
+    computer = User.objects.get(id=99)
+    comp_roster = computer.roster.players.all()
+    for player in comp_roster:
+        computer.roster.players.remove(player)
     
     return redirect('/dashboard')

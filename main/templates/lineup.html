@@ -1,11 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draft</title>
+    <style>
+        .current_game_table {
+            border: 3px solid black;
+            width: 900px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 250px;
+        }
+        .current_game_table h2 {
+            display: block;
+            color: blue;
+            text-align: center;
+            text-shadow: 1px 1px rgb(199, 199, 199);
+        }
+
+        table {
+            /* border: 1px solid blue; */
+            text-align: center;
+            width: 900px;
+            padding: 15px;
+            
+        }
+
+        .line {
+            width: 900px;
+            height: 2px;
+            background-color: black;
+            display: inline-block;
+        }
+
+        .container{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Didot, serif;
+            background-color: -webkit-linear-gradient(red, blue);
+            background: -o-linear-gradient(red, white, blue);
+            background: -moz-linear-gradient(red, white, blue);
+            background: linear-gradient(red, white, blue);
+        }
+
+    </style>
 </head>
 <body>
+    <div class="container">
     <h1>Lineup</h1>
 
     <div class="banner">
@@ -20,11 +65,108 @@
         <input type="checkbox" id="player_id" name="player_id" value="{{player.id}}">
         <label for="player_id">{{player.name}}</label><br>
         {% endfor %}
-        <input type="submit" value="add to line up" /> 
+        <input type="submit" value="Start 3 Players" /> 
 
     </form>
 
+    {% if winner == 'user' %}
+        <h1>USER WON</h1>
+    {% elif winner == 'comp' %}
+        <h1>COMPUTER ONE</h1>
+    {% endif %}
 
+    <div class="current_game_table">
+        <h2>Current Game</h2>
+        <table> 
+            <thead>
+                <th>Team</th>
+                <th>{{request.session.starter1}}</th>
+                <th>{{request.session.starter2}}</th>
+                <th>{{request.session.starter3}}</th>
+                <th>Total Score</th>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>{{current_user.name}}'s Team</td>
+                    <td>{{request.session.points1}}</td>
+                    <td>{{request.session.points2}}</td>
+                    <td>{{request.session.points3}}</td>
+                    <td>{{request.session.total_points}}</td>
+                </tr>
+        
+            </tbody>
+        </table>
+        <div class="line"></div>
+        <table> 
+            <thead>
+                <th>Team</th>
+                <th>{{request.session.comp_starter1}}</th>
+                <th>{{request.session.comp_starter2}}</th>
+                <th>{{request.session.comp_starter3}}</th>
+                <th>Total Score</th>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>Computer Team2</td>
+                    <td>{{request.session.comp_points1}}</td>
+                    <td>{{request.session.comp_points2}}</td>
+                    <td>{{request.session.comp_points3}}</td>
+                    <td>{{request.session.comp_total_points}}</td>
+                </tr>
+        
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <table> 
+        <thead>
+            <th>{{current_user.name}} Score</th>
+        </thead>
+        <tbody>
+            {% for score in winning_scores_array %}
+            <tr>
+                <td>{{current_user.name}}'s Team Score {{score}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table> 
+        <thead>
+            <th>Computer Score</th>
+        </thead>
+        <tbody>
+            {% for score in comp_winning_scores_array %}
+            <tr>
+                <td>Computer {{score}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <div class="game_tally">
+        <p>Game Scores</p>
+
+        {% for score in winning_scores_array %}
+            <p>{{current_user.name}}'s Team Score {{score}}</p>
+        {% endfor %}
+    </div>
+    <div class="game_tally">
+        <p>Computer Game Scores</p>
+
+        {% for score in comp_winning_scores_array %}
+            <p>Computer Team Score {{score}}</p>
+        {% endfor %}
+    </div>
+
+    
+    
     <button><a href="/delete_roster/{{roster.id}}">New Game</a></button>
+    </div>
 </body>
 </html>

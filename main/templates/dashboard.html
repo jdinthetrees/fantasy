@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Dashboard</title>
 </head>
 <body>
     <h1>Dashboard</h1>
 
-    
-
-    <div class="banner">
+    <div class="container">
         <h1>Hello, {{current_user.name}}</h1>
-
+    <div class="intro">
+        <h3>Welcome to Fantasy StreetBall!  In this league you are the coach. Have fun picking your dream team for an exciting game of 3v3 basketball.</h3>
+        <h3>How the game works:</h3>
+        <ol>
+            <li>Draft Players
+            <li>Pick 3 Starters
+            <li>Win the most of 5 games
+        </ol>
+    </div>
         <button><a href="/draft">Play Game</a></button>
 
     <div class="rightbox">
-    <h2><form action="/logout" method="POST" id="logout">
+    <form action="/logout" method="POST" id="logout">
         {% csrf_token %}
     <input type="submit" value="logout" />
     </form>   
 
+    </div>
 </body>
 </html>

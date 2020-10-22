@@ -11,8 +11,8 @@ urlpatterns = [
     path('draft', views.draft_view),
     path('roster_add/<player_id>', views.roster_add),
     path('lineup', views.lineup_view),
-    path('lineup_process/<player_id>', views.lineup_process),
     path('game_play', views.gameplay),
     path('delete_roster/<roster_id>', views.delete_roster),
+    path('comp_draft_play', views.comp_draft_play),
 
 ]

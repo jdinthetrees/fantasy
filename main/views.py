@@ -7,6 +7,9 @@ import random
 computer = User(name='PC2')
 computer_roster = Roster(id=99, user=computer)
 
+
+    
+
 def index(request):
 
     if 'user_id' in request.session:
@@ -72,15 +75,32 @@ def welcome(request):
     context = {
         'current_user': User.objects.get(id=request.session['user_id'])
     }
-    
-    # print(computer.name)
-    # print(computer_roster.players.all())
 
     return render(request, "dashboard.html", context)
 
 def logout(request):
     request.session.clear()
     return redirect('/')
+
+def comp_draft_play(request):
+    avail_players = []
+    for player in Player.objects.all():
+        if player.picked == False:
+            avail_players.append(player)
+            
+    comp_pick_index = random.randint(0, len(avail_players)-1)
+    player = avail_players[comp_pick_index]
+    print(player.name)
+    
+    # computer_roster.players.add(player)
+    # player.picked = True  
+    # player.save()
+    
+    
+    print('comp_pick_index: ', comp_pick_index)
+    return redirect('/draft')
+    
+    
 
 def roster_add(request, player_id):
     user = User.objects.get(id=request.session['user_id'])
@@ -90,6 +110,8 @@ def roster_add(request, player_id):
         this_roster.players.add(player)
         player.picked = True  
         player.save()
+        # return redirect('/comp_draft_play')
+    
     
     
     print(user.roster.players.all())
@@ -127,25 +149,39 @@ def lineup_view(request):
     
     return render(request, 'lineup.html', context)
 
-def lineup_process(request, player_id):
-    id_array = request.session['lineup'].split('|')
-    if len(id_array)<=3:
-        user = User.objects.get(id=request.session['user_id'])
-        player = Player.objects.get(id=player_id)
-        request.session['lineup'] += (str(player_id)+'|')
-    
-    print(request.session['lineup'])
-    
-    return redirect('/lineup')
+
 
 def gameplay(request):
-    player = Player.objects.get(id=request.POST['player_id'])
-    points = (player.pts+player.stl+(player.ast//2)+(player.blk//2)+(player.reb//2))
-    random_points= random.randint(points - 5, points + 5)
-    request.session['points'] = random_points
-    print(random_points)
     
-    return redirect('/lineup')
+    print(request.POST)
+    id_array = request.POST.getlist('player_id')
+    # print(id_array)
+    for i in range(0,3,1):
+        # print(i, id_array[i])
+        if i == 0:
+            player1 = Player.objects.get(id=int(id_array[0]))
+            points1 = (player1.pts+player1.stl+(player1.ast//2)+(player1.blk//2)+(player1.reb//2))
+            random_points1= random.randint(points1 - 5, points1 + 5)
+            request.session['points1'] = random_points1
+            print(random_points1)
+        elif i == 1:
+            player2 = Player.objects.get(id=int(id_array[1]))
+            points2 = (player2.pts+player2.stl+(player2.ast//2)+(player2.blk//2)+(player2.reb//2))
+            random_points2 = random.randint(points2 - 5, points2 + 5)
+            request.session['points2'] = random_points2
+            print(random_points2)
+        else:
+            player3 = Player.objects.get(id=int(id_array[2]))
+            points3 = (player3.pts+player3.stl+(player3.ast//2)+(player3.blk//2)+(player3.reb//2))
+            random_points3= random.randint(points3 - 5, points3 + 5)
+            request.session['points3'] = random_points3
+            print(random_points3)
+
+        
+    total_points = random_points1+random_points2+random_points3
+    print(total_points)
+
+    return redirect('/')
 
 def delete_roster(request, roster_id):
     print('roster_id: ', roster_id)

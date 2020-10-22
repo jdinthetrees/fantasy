@@ -24,12 +24,7 @@
 
     </form>
 
-    <div class="rightbox">
-    <h2><form action="/logout" method="POST" id="logout">
-        {% csrf_token %}
-    <input type="submit" value="logout" />
-    </form>
 
-    <button><a href="/delete_roster/{{roster.id}}">Delete</a></button>
+    <button><a href="/delete_roster/{{roster.id}}">New Game</a></button>
 </body>
 </html>

@@ -13,15 +13,13 @@
     <div class="banner">
         <h1>Hello, {{current_user.name}}</h1>
 
+        <button><a href="/draft">Play Game</a></button>
+
     <div class="rightbox">
     <h2><form action="/logout" method="POST" id="logout">
         {% csrf_token %}
     <input type="submit" value="logout" />
-    </form>
-    
-    
-
-
+    </form>   
 
 </body>
 </html>

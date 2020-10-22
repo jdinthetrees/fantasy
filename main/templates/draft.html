@@ -23,6 +23,10 @@
         {% endfor %}
     </ul>
 
+    {% if roster_length == 9 %}
+        <button><a href="/lineup">Continue</a></button>
+    {% endif %}
+
     <div class="rightbox">
     <h2><form action="/logout" method="POST" id="logout">
         {% csrf_token %}

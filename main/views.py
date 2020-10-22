@@ -37,6 +37,7 @@ def login_user(request):
         user = User.objects.get(id=request.session['user_id'])
         
         Roster.objects.create(user=user)
+        print(user.roster)
         
         return redirect('/dashboard')
     messages.error(request, "password does not match try again!")
@@ -106,7 +107,7 @@ def roster_add(request, player_id):
     user = User.objects.get(id=request.session['user_id'])
     player = Player.objects.get(id=player_id)
     this_roster = user.roster
-    if len(this_roster.players.all())<10:
+    if len(this_roster.players.all())<9:
         this_roster.players.add(player)
         player.picked = True  
         player.save()
@@ -129,11 +130,15 @@ def draft_view(request):
         if player.picked == False:
             avail_players.append(player)
     
+    roster_length = len(user.roster.players.all())
+    
     context = {
         'current_user': User.objects.get(id=request.session['user_id']),
         # 'players': Player.objects.all(),
         'players': avail_players,
-        'roster': user.roster
+        'roster': user.roster,
+        'roster_length': roster_length
+        
     }
     
     
@@ -192,5 +197,7 @@ def delete_roster(request, roster_id):
     
     this_roster = Roster.objects.get(id=roster_id)
     this_roster.delete()
+    user = User.objects.get(id=request.session['user_id'])
+    Roster.objects.create(user=user)
     
     return redirect('/dashboard')

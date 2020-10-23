@@ -14,5 +14,6 @@ urlpatterns = [
     path('game_play', views.gameplay),
     path('delete_roster/<roster_id>', views.delete_roster),
     path('comp_draft_play', views.comp_draft_play),
+    path('new_game/<roster_id>', views.new_game),
 
 ]

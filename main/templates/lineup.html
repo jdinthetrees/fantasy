@@ -71,8 +71,10 @@
 
     {% if winner == 'user' %}
         <h1>USER WON</h1>
+        <button><a href="/new_game/{{roster.id}}">New Game</a></button>
     {% elif winner == 'comp' %}
         <h1>COMPUTER ONE</h1>
+        <button><a href="/new_game/{{roster.id}}">New Game</a></button>
     {% endif %}
 
     <div class="current_game_table">
@@ -166,7 +168,7 @@
 
     
     
-    <button><a href="/delete_roster/{{roster.id}}">New Game</a></button>
+    <button><a href="/delete_roster/{{roster.id}}">Exit Game</a></button>
     </div>
 </body>
 </html>

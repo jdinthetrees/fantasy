@@ -8,9 +8,9 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <div class="container">
     <h1>Dashboard</h1>
 
-    <div class="container">
         <h1>Hello, {{current_user.name}}</h1>
     <div class="intro">
         <h3>Welcome to Fantasy StreetBall!  In this league you are the coach. Have fun picking your dream team for an exciting game of 3v3 basketball.</h3>
@@ -28,7 +28,7 @@
         {% csrf_token %}
     <input type="submit" value="logout" />
     </form>   
-
+    </div>
     </div>
 </body>
 </html>

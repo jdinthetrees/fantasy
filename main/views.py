@@ -36,7 +36,7 @@ def login_user(request):
         request.session['user_id'] = our_user.id
         user = User.objects.get(id=request.session['user_id'])
         
-        Roster.objects.create(user=user)
+        # Roster.objects.create(user=user)
         print(user.roster)
         
         return redirect('/dashboard')
@@ -301,3 +301,22 @@ def delete_roster(request, roster_id):
         computer.roster.players.remove(player)
     
     return redirect('/dashboard')
+
+def new_game(request, roster_id):
+    print('roster_id: ', roster_id)
+    
+    for player in Player.objects.all():
+        player.picked = False
+        player.save()
+    
+    this_roster = Roster.objects.get(id=roster_id)
+    this_roster.delete()
+    user = User.objects.get(id=request.session['user_id'])
+    Roster.objects.create(user=user)
+    
+    computer = User.objects.get(id=99)
+    comp_roster = computer.roster.players.all()
+    for player in comp_roster:
+        computer.roster.players.remove(player)
+    
+    return redirect('/draft')

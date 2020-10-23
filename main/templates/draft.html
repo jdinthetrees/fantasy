@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Draft</title>
-    {% load static %}
 </head>
 <body>
     <div class="container">
     <h1>Draft</h1>
 
-    <div class="banner">
+    <div class="intro">
         <p>Hello, {{current_user.name}}</p>
     </div>
 
@@ -51,6 +50,7 @@
         {% csrf_token %}
     <input type="submit" value="logout"/>
     </form>
+    </div>
 </div>
 </body>
 </html>

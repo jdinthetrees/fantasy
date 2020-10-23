@@ -6,7 +6,7 @@
     background-color: -webkit-linear-gradient(red, blue);
     background: -o-linear-gradient(red, white, blue);
     background: -moz-linear-gradient(red, white, blue);
-    background: linear-gradient(red, white, blue);;
+    background: linear-gradient(red, white, blue);
 }
 
 .draftable_players{
@@ -38,10 +38,6 @@
     margin-left: .5in;
     margin-top: .5in;
     background-color: white;
-}
-
-.lebron_dunk{
-
 }
 p{
     color: blue;

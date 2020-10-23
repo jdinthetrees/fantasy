@@ -5,80 +5,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draft</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent Marker">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
     <style>
-        .current_game_table {
-            border: 3px solid black;
+    .current_game_table {
+        border: 3px solid rgb(255, 255, 255);
+        background-image: radial-gradient(rgb(53, 45, 45), rgb(37, 37, 37), rgb(0, 0, 0));
+        width: 900px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 50px;
+        }
+        .current_game_table h2 {
+        display: block;
+        width: 250px;
+        border-radius: 25px;
+        background-color: white;
+        margin-left: 100px;
+        color: rgb(0, 0, 255);
+        text-align: center;
+        text-shadow: 1px 1px rgb(0, 0, 0);
+        font-family: Arial, Helvetica, sans-serif;
+        }
+    table {
+        text-align: center;
+        width: 900px;
+        padding: 15px;
+        
+    }
+    
+    .line {
+        width: 900px;
+        height: 2px;
+        background-color: rgb(255, 255, 255);
+        display: inline-block;
+    }
+    
+    .container{
+        height: 100%;
+        margin: 20;
+        padding: 0;
+    }
+    .current_game_table th {
+        color: white;
+        text-shadow: 2px 1px rgb(0, 0, 0);
+        background-color: blue;
+        font-family: "Montserrat";
+    } 
+    .current_game_table td {
+        color: white;
+        text-shadow: 2px 2px rgb(0, 0, 0);
+        font-family: "Bungee";
+        font-size: 19px;
+    }
+    header {
+        background-image: radial-gradient(blue, rgb(37, 37, 37), rgb(0, 0, 0));
+        border-radius: 15px;
+        border: 4px solid rgb(255, 255, 255);
+        padding: 0px;
+    
+    }
+    header h2{
+        text-align: center;
+        font-family: "Permanent Marker";
+        text-shadow: 1px 1px rgb(255, 255, 255);
+        color: red;
+        margin: 0px; 
+    } 
+    .top_content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 30px;
+    }
+    .winner {
+        font-family: "Bungee";
+        margin-left: 150px;
+        background-color: red;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85); 
+        box-shadow: 1px -1px 15px 5px #FF0000,inset 1px 0px 29px 5px #1100FF,  -3px 3px 50px 14px rgba(255,255,255,0.85);
+        padding: 10px;
+    }
+    .top_content form {
+        background-color: white;
+        padding: 10px;
+        border-radius: 25px;
+        border: 3px solid rgb(0, 0, 0);
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        margin-left: 40px;
+    }
+    body{
+        margin: 5px;
+        padding: 5px;
+        font-family: Didot, serif;
+        background-color: -webkit-linear-gradient(red, blue);
+        background: -o-linear-gradient(red, white, blue);
+        background: -moz-linear-gradient(red, white, blue);
+        background: linear-gradient(red, white, blue);
+    }
+    .team_name {
+        font-family: "Bungee";
+        margin-left: 50px;
+        text-decoration: underline;
+        text-shadow: 1px 1px rgb(255, 255, 255);
+    }
+    .starter_button {
+        border: 3px solid rgb(0, 0, 0);
+        background-color: #ff0000;
+        font-weight: bold;
+        color: white;
+        border-radius: 25px;
+        text-shadow: 1px 1px rgb(0, 0, 0);
+    } 
+    .current_game_table {
+            border: 3px solid rgb(255, 255, 255);
+            background-image: radial-gradient(rgb(53, 45, 45), rgb(37, 37, 37), rgb(0, 0, 0));
             width: 900px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-left: 250px;
+            margin-left: 50px;
         }
-        .current_game_table h2 {
-            display: block;
-            color: blue;
+        .game_table1 {
+            width: 250px;
+            border: 3px solid rgb(0, 0, 0);
+            border-radius: 25px;
+            background-color: white;
+            margin-left: 100px;
+            color: rgb(0, 0, 255);
             text-align: center;
-            text-shadow: 1px 1px rgb(199, 199, 199);
+            text-shadow: 1px 1px rgb(0, 0, 0);
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: ;
+        }
+        .game_table2 {
+            width: 250px;
+            border-radius: 25px;
+            background-color: white;
+            margin-left: 100px;
+            color: rgb(0, 0, 255);
+            border: 3px solid rgb(0, 0, 0);
+            text-align: center;
+            text-shadow: 1px 1px rgb(0, 0, 0);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .title {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
 
-        table {
-            /* border: 1px solid blue; */
-            text-align: center;
-            width: 900px;
-            padding: 15px;
+        .new_game {
+            margin-left: 15px;
+            border: 3px solid rgb(0, 0, 0);
+            background-color: blue;
+            border-radius: 25px;
             
         }
-
-        .line {
-            width: 900px;
-            height: 2px;
-            background-color: black;
-            display: inline-block;
+        .new_game a {
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px rgb(0, 0, 0);
+            text-decoration: none;
         }
-
-        .container{
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Didot, serif;
-            background-color: -webkit-linear-gradient(red, blue);
-            background: -o-linear-gradient(red, white, blue);
-            background: -moz-linear-gradient(red, white, blue);
-            background: linear-gradient(red, white, blue);
+        .current_game_table button {
+            margin: 5px;
+            border: 3px solid rgb(255, 255, 255);
+            background-color: red;
+            border-radius: 25px;
+            
         }
-
+        .current_game_table button a {
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px rgb(0, 0, 0);
+            text-decoration: none;
+        }
+        .cgt_title {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-    <h1>Lineup</h1>
+<div class="container">
+    <!-- <h1>Lineup</h1> -->
+    <header>
+        <h2>Fantasy StreetBall</h2>
+    </header>
 
-    <div class="banner">
-        <h1>Hello, {{current_user.name}}</h1>
+    <div class="title">
+        <h1 class="team_name">{{current_user.name}}'s Roster</h1>
+        {% if winner == 'user' %}
+        
+        <h1 class="winner">{{current_user.name}} WON!!!</h1>
+        <button class="new_game"><a href="/new_game/{{roster.id}}">New Game</a></button>
+            {% elif winner == 'comp' %}
+        <h1 class="winner">COMPUTER ONE</h1>
+        <button class="new_game"><a href="/new_game/{{roster.id}}">New Game</a></button>
+        {% endif %}
+        
+    </div>
+
+    <!-- <h1>Current Lineup</h1> -->
+    <div class="top_content">
+        <form action="/game_play" method="POST">
+            {% csrf_token %}
+            {% for player in roster.players.all %}
+            <input type="checkbox" id="player_id" name="player_id" value="{{player.id}}">
+            <label for="player_id">{{player.name}}</label><br>
+            {% endfor %}
+            <br>
+            <input class="starter_button" type="submit" value="Start 3 Players" /> 
+
+        </form>
 
 
-    <h1>Current Lineup</h1>
-
-    <form action="/game_play" method="POST">
-        {% csrf_token %}
-        {% for player in roster.players.all %}
-        <input type="checkbox" id="player_id" name="player_id" value="{{player.id}}">
-        <label for="player_id">{{player.name}}</label><br>
-        {% endfor %}
-        <input type="submit" value="Start 3 Players" /> 
-
-    </form>
-
-    {% if winner == 'user' %}
-        <h1>USER WON</h1>
-        <button><a href="/new_game/{{roster.id}}">New Game</a></button>
-    {% elif winner == 'comp' %}
-        <h1>COMPUTER ONE</h1>
-        <button><a href="/new_game/{{roster.id}}">New Game</a></button>
-    {% endif %}
-
+        <table class="game_table1"> 
+            <thead>
+                <th>{{current_user.name}} Score</th>
+            </thead>
+            <tbody>
+                {% for score in winning_scores_array %}
+                <tr>
+                    <td>{{current_user.name}}'s Team Score {{score}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <table class="game_table2"> 
+            <thead>
+                <th>Computer Score</th>
+            </thead>
+            <tbody>
+                {% for score in comp_winning_scores_array %}
+                <tr>
+                    <td>Computer {{score}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<br>
+<br>
+<br>
     <div class="current_game_table">
-        <h2>Current Game</h2>
+        <div class="cgt_title">
+            <h2>Current Game</h2>
+            <div>
+            <button><a href="/delete_roster/{{roster.id}}">End Game</a></button>
+            </div>
+            
+        </div>
         <table> 
             <thead>
                 <th>Team</th>
@@ -121,54 +307,6 @@
             </tbody>
         </table>
     </div>
-
-
-
-    <table> 
-        <thead>
-            <th>{{current_user.name}} Score</th>
-        </thead>
-        <tbody>
-            {% for score in winning_scores_array %}
-            <tr>
-                <td>{{current_user.name}}'s Team Score {{score}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <table> 
-        <thead>
-            <th>Computer Score</th>
-        </thead>
-        <tbody>
-            {% for score in comp_winning_scores_array %}
-            <tr>
-                <td>Computer {{score}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-
-
-    <div class="game_tally">
-        <p>Game Scores</p>
-
-        {% for score in winning_scores_array %}
-            <p>{{current_user.name}}'s Team Score {{score}}</p>
-        {% endfor %}
-    </div>
-    <div class="game_tally">
-        <p>Computer Game Scores</p>
-
-        {% for score in comp_winning_scores_array %}
-            <p>Computer Team Score {{score}}</p>
-        {% endfor %}
-    </div>
-
-    
-    
-    <button><a href="/delete_roster/{{roster.id}}">Exit Game</a></button>
-    </div>
+</div>
 </body>
 </html>

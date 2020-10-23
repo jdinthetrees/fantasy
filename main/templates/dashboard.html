@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     {% load static %}
@@ -30,5 +30,45 @@
     </form>   
     </div>
     </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent Marker">
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <header class="registerh2">
+        <h2>Fantasy StreetBall</h2>
+    </header>
+    
+<div class="intropage">
+    <div class="container_dashboard">
+        <h1>Hello, {{current_user.name}}</h1>
+    <div class="introduction">
+        <h3>Welcome to Fantasy StreetBall!  In this league you are the coach. Have fun picking your dream team for an exciting game of 3v3 basketball.</h3>
+        <h3>How the game works:</h3>
+        <ol>
+            <li>Draft Players</li>
+            <li>Pick 3 Starters</li>
+            <li>Win the most of 5 games</li>
+        </ol>
+    </div>
+        <button class="draft"><a href="/draft">Play Game</a></button>
+        <button class="logout"><a href="/logout">Log Out</a></button>
+   
+       
+
+    </div>
+
+    <div class="whitemen"><img src="{% static '/css/images/whitemencantjump.gif' %}" alt="Image is Loading" class="whitemenimg"></div>
+</div>
 </body>
 </html>

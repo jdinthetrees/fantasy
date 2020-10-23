@@ -1,3 +1,4 @@
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +52,66 @@
     <input type="submit" value="logout"/>
     </form>
     </div>
+</div>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Permanent Marker">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bungee">
+
+    <title>Draft</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Fantasy StreetBall</h2>
+        </header>
+
+    <div class="intro">
+        <h3>Welcome to Draft Day {{current_user.name}}!</h3>
+    </div>
+<div class="middle_content">
+   
+    <div class="draftable_players">
+        <p>Draftable Player's:</p>
+    <ul>
+    {% for player in players %}
+        <li>{{player.name}} <a href="/roster_add/{{player.id}}" class="button">+</a></li>
+    {% endfor %}
+    </ul>
+
+        <p>Current Roster:</p>
+    <ul>
+        {% for player in roster.players.all %}
+            <li>{{player.name}} </li>
+        {% endfor %}
+    </ul>
+
+    <p>Computer Roster:</p>
+    <ul>
+        {% for player in comp_roster %}
+            <li>{{player.name}} </li>
+        {% endfor %}
+    </ul>
+    {% if roster_length == 9 %}
+    <button><a href="/lineup">Continue</a></button>
+    {% endif %}
+    </div>
+
+    <div class="image_box">
+        <img src="{% static '/css/images/lebron_james.gif' %}" alt="Gif is Loading">
+        <img src="{% static '/css/images/bball1.gif' %}" alt="Gif is Loading">
+    </div>
+    
+</div>
 </div>
 </body>
 </html>

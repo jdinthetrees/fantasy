@@ -1,15 +1,182 @@
-.container{
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: Didot, serif;
+body {
+    margin: 5px;
+    padding: 5px;
     background-color: -webkit-linear-gradient(red, blue);
     background: -o-linear-gradient(red, white, blue);
     background: -moz-linear-gradient(red, white, blue);
     background: linear-gradient(red, white, blue);
 }
 
+header {
+    background-image: radial-gradient(blue, rgb(37, 37, 37), rgb(0, 0, 0));
+    border-radius: 15px;
+    border: 4px solid rgb(255, 255, 255);
+    padding: 0px;
+
+}
+header h2{
+    text-align: center;
+    font-family: "Permanent Marker";
+    text-shadow: 1px 1px rgb(255, 255, 255);
+    color: red;
+    margin: 0px;
+}
+
+.registerh2 h2{
+    text-align: center;
+    font-family: "Permanent Marker";
+    text-shadow: 1px 1px rgb(255, 255, 255);
+    color: red;
+    margin: 0px;
+    font-size: 30px;
+}
+
+
+/* header h2{
+    text-align: center;
+    font-family: "Permanent Marker";
+    text-shadow: 1px 1px rgb(255, 255, 255);
+    font-size: 22px;
+    color: red;
+    margin: 5px;
+}  */
+
+.registerh2 {
+    height: 50px;
+}
+
+html {  
+    height: 100%
+}
+
+.container_registration, .container_login {
+    
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-family: Didot, serif;
+    margin-left: 100px;
+    
+}
+
+.container_registration h1, .container_login h1 {
+    color: black;
+    padding: 15px;  
+    margin-right: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.registration_box, .login_box {
+    display:flex;
+    justify-content: space-around;
+    width: 400px;
+    color: black;
+    border: solid 3px black;
+    border-radius: 25px;
+    text-align: left;
+    margin-left: .5in;
+    margin-top: .9in;
+    background-color: white;
+    padding: 15px; 
+}
+
+.registration_box label, .login_box label {
+    color: red;
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.registration_box input, .login_box input{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+
+
+.registration_errors, .login_errors {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 400px;
+    color: black;
+    border: solid 3px black;
+    border-radius: 25px;
+    text-align: left;
+    margin-left: .5in;
+    margin-top: .9in;
+    background-color: white;
+    padding: 15px;  
+}
+
+.register, .login {
+    background-color: #FF0100;
+    border-radius: 10px;
+    color: white;
+}
+
+.container_dashboard {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 400px;
+    color: black;
+    border: solid 3px black;
+    border-radius: 25px;
+    text-align: left;
+    margin-left: 35px;
+    margin-top: .9in;
+    background-color: white;
+    padding: 15px; 
+    -webkit-box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85); 
+    box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85);
+}
+
+.container_dashboard h1 {
+    text-align: center;
+}
+
+.intropage {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.whitemen {
+    
+    margin-top: 130px;
+}
+.whitemenimg {
+    border: 3px solid black;
+    -webkit-box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85); 
+    box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85);
+}
+
+.introduction ol {
+    margin-left : 80px;
+}
+
+.draft{
+    margin-left : 120px;
+    background-color: #FF0100;
+    
+    border-radius: 10px;
+}
+.draft a {
+    text-decoration: none;
+    color: white;
+    
+}
+
+.logout {
+    background-color: #FF0100;
+    border-radius: 10px;
+    
+}
+
+.logout a {
+    text-decoration: none;
+    color: white;
+}
+
+
 .draftable_players{
+    margin: 0px;
+    padding: 0px;
     width: 300px;
     color:red;
     border: solid 3px black;
@@ -17,29 +184,71 @@
     text-align: left;
     margin-left: .5in;
     margin-top: .5in;
+    margin-bottom: .5in;
     background-color: white;
+    font-family: "Permanent Marker";
+    -webkit-box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85); 
+    box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85);
 }
 
-.current_roster{
-    width: 300px;
-    color: red;
-    border: solid 3px black;
-    border-radius: 25px;
-    text-align: left;
-    margin-top: 1cm;
-    margin-left: .5in;
-    background-color: white;
+.draftable_players button{
+        border: 3px solid rgb(0, 0, 0);
+        background-color: #ff0000;
+        font-weight: bold;
+        color: white;
+        border-radius: 25px;
+        text-shadow: 1px 1px rgb(0, 0, 0);
+        margin-left: 25px;
+        margin-bottom: 10px;
+        text-decoration: none;
+}
+
+.draftable_players button a{
+    background-color: #ff0000;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.middle_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .intro{
-    width: 300px;
+    margin: 0px;
+    padding: 0px;
     color:red;
     text-align: left;
     margin-left: .5in;
     margin-top: .5in;
-    background-color: white;
+
 }
+
 p{
     color: blue;
     margin-left: 1cm;
 }
+
+h3{
+    font-size: 30px;
+    color: blue;
+    font-family: "Bungee";
+}
+
+
+
+.image_box{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    border: solid black;
+    border-radius: 7px;
+    -webkit-box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85); 
+    box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85);
+}
+

@@ -129,6 +129,7 @@ html {
 
 .container_dashboard h1 {
     text-align: center;
+    text-shadow: 1px 1px blue;
 }
 
 .intropage {
@@ -148,6 +149,17 @@ html {
 
 .introduction ol {
     margin-left : 80px;
+}
+.introduction li {
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 1px rgb(0, 0, 0);
+    color: blue;
+}
+
+.introduction h2{
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 1px 1px rgb(0, 0, 0);
+    color: blue;
 }
 
 .draft{
@@ -238,6 +250,8 @@ h3{
     font-size: 30px;
     color: blue;
     font-family: "Bungee";
+    /* text-decoration: underline; */
+    text-shadow: 3px 3px rgb(0, 0, 0);
 }
 
 
@@ -252,3 +266,44 @@ h3{
     box-shadow: 1px -1px 15px 5px #FF0000, 1px 0px 29px 5px #1100FF, inset -3px 3px 50px 14px rgba(255,255,255,0.85);
 }
 
+.reg_button {
+    border: 3px solid rgb(0, 0, 0);
+    background-color: blue;
+    border-radius: 25px;
+    color: white;
+    width: 80px;
+}
+
+.reg_button a {
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px rgb(0, 0, 0);
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+.right_stuff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.log_button {
+    border: 3px solid rgb(0, 0, 0);
+    margin-left: 155px;
+    background-color: blue;
+    border-radius: 25px;
+    color: white;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log_button a {
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px rgb(0, 0, 0);
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}

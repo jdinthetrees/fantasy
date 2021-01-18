@@ -56,12 +56,11 @@
     </header>
 
     <div class="container_registration">
-
         <div class="registration_box">
         <h1>Registration</h1>
     <form action="/process_user" method="POST">
         {% csrf_token %}
-        <label for="name">First Name</label>
+        <label for="name">Username</label>
         <input type="text" name="name" id="name"><br>
         <label for="email">Email</label>
         <input type="email" name="email" id="email"><br>
@@ -72,7 +71,6 @@
         <input type="submit" value="register" class="register"/>
         
     </form>
-
     {% if messages %}
     <div class="registration_errors">
     <ul>
@@ -84,6 +82,11 @@
     {% endif %}
 </div>
 
+</div>
+<br>
+
+<div class="right_stuff"></div>
+<button class="log_button"><a href="/">Back to Login</a></button>
 </div>
 </body>
 </html>

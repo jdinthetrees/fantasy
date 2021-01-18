@@ -138,20 +138,42 @@
             width: 250px;
             border: 3px solid rgb(0, 0, 0);
             border-radius: 25px;
-            background-color: white;
+            background-image: radial-gradient(rgb(53, 45, 45), rgb(37, 37, 37), rgb(0, 0, 0));
             margin-left: 100px;
             color: rgb(0, 0, 255);
             text-align: center;
             text-shadow: 1px 1px rgb(0, 0, 0);
             font-family: Arial, Helvetica, sans-serif;
-            text-decoration: ;
         }
+        .game_table1 th {
+            background-image: radial-gradient(rgb(255, 0, 0), rgb(61, 0, 0),rgb(0, 0, 0));
+            color: white;
+            border-radius: 25px;
+            text-shadow: 2px 2px black;
+            font-weight: bold;
+        }
+        .game_table1 td {
+            color: red;
+            text-shadow: 1px 1px black;
+        }
+
+        .game_table2 th {
+            background-image: radial-gradient(white, rgb(181, 181, 255),blue);
+            color: black;
+            border-radius: 25px;
+            /* text-shadow: 1px 1px blue; */
+            font-weight: bold;
+        }
+        .game_table2 td {
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+
         .game_table2 {
             width: 250px;
             border-radius: 25px;
-            background-color: white;
+            background-image: radial-gradient(rgb(92, 92, 255), rgb(55, 55, 255),blue);
             margin-left: 100px;
-            color: rgb(0, 0, 255);
             border: 3px solid rgb(0, 0, 0);
             text-align: center;
             text-shadow: 1px 1px rgb(0, 0, 0);
@@ -231,7 +253,7 @@
 
         <table class="game_table1"> 
             <thead>
-                <th>{{current_user.name}} Score</th>
+                <th>{{current_user.name}}'s Score</th>
             </thead>
             <tbody>
                 {% for score in winning_scores_array %}

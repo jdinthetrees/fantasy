@@ -4,7 +4,7 @@
 
 <a href="https://vimeo.com/501969082">click to see video demo</a>.
 
-Fantasy Streetball is a fantasy basketball board game app leveraged through built using Django.
+Fantasy Streetball is a fantasy basketball board game app built using Django.
 
 ## FEATURES
 - Users can register and log in to app.
